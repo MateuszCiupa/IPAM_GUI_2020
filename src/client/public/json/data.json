@@ -1,0 +1,62 @@
+{
+    "devices": [
+        {
+            "owner": "Franciszek",
+            "hostname": "jacex",
+            "about": "fajne urządzenie",
+            "gateway": false,
+            "ip": "192.168.0.10",
+            "loc": {
+                "position": 1,
+                "size": 3,
+                "rack": 0
+            },
+            "mac": "4372478492fh3y3f349f2fh8f",
+            "subnet": 0
+        }
+    ],
+    "locations": [
+        {
+            "name": "Polska",
+            "about": "fajna ta Polska"
+        }
+    ],
+    "nat": [
+        {
+            "name": "czo-ten-nat",
+            "device": 0,
+            "ip": "93.211.21.212",
+            "subnet": 0
+        }
+    ],
+    "racks": [
+        {
+            "about": "what the rack",
+            "devices": [0],
+            "size": 42,
+            "loc": 0
+        }
+    ],
+    "subnets": [
+        {
+            "ip": "192.168.0.0",
+            "mask": "255.255.255.0",
+            "dhcp": "192.168.0.1",
+            "about": "what the sieć",
+            "device": 1,
+            "routable": false,
+            "vlan": 0,
+            "dmz": false,
+            "loc": 0,
+            "nameservers": "8.8.8.8"
+        }
+    ],
+    "vlan": [
+        {
+            "id": 1,
+            "name": "qlVlan",
+            "about": "what the vlan",
+            "subnets": [0]
+        }
+    ]
+}
