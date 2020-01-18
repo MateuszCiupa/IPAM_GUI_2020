@@ -1,11 +1,16 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { login } from 'redux/modules/auth';
 
-export default ({ history, setLoggedIn }) => {
+const mapDispatchToProps = dispatch => ({
+    login: auth => dispatch(login(auth))
+});
+
+const Login = ({ login }) => {
     const handleSubmit = event => {
         event.preventDefault();
-        setLoggedIn(true);
-        history.push('/');
+        login({ user: 'Admin' });
     };
 
     return (
@@ -24,3 +29,8 @@ export default ({ history, setLoggedIn }) => {
         </Form>
     );
 }
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Login);

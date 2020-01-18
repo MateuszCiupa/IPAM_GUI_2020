@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Home, Login, Racks } from './layouts';
 import { NavBar, Layout } from './layouts/components';
+import { connect } from 'react-redux';
+import { AuthRoute, ProtectedRoute } from './util/route';
 
-export default () => {
-    const [loggedIn, setLoggedIn] = useState(false);
-    return (
-        <Router>
-            {loggedIn ? <NavBar /> : null}
-            <Layout>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route 
-                        path="/login"
-                        render={props => <Login {...props} setLoggedIn={setLoggedIn} />}
-                    />
-                    <Route path="/racks" component={Racks} />
-                </Switch>
-            </Layout>
-        </Router>
-    );
-};
+const mapStateToProps = ({ auth: { loggedIn }}) => ({
+    loggedIn
+});
+
+const App = ({ loggedIn }) => (
+    <Router>
+        {loggedIn ? <NavBar /> : null}
+        <Layout>
+            <Switch>
+                <ProtectedRoute path="/racks" component={Racks} />
+                <AuthRoute path="/login" component={Login} />
+                <ProtectedRoute path="/" component={Home} />
+            </Switch>
+        </Layout>
+    </Router>
+);
+
+export default connect(mapStateToProps)(App);
