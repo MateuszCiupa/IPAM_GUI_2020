@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const StyledNavbar = styled(Navbar)`
+    background-color: #20232a;
+`;
 
 export default () => (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <StyledNavbar variant="dark" expand="lg">
         <Link className="navbar-brand" to="/">
             IPAM
         </Link>
@@ -51,5 +56,5 @@ export default () => (
                 </LinkContainer>
             </NavDropdown>
         </Navbar.Collapse>
-    </Navbar>
+    </StyledNavbar>
 );
