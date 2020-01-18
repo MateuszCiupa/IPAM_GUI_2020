@@ -1,12 +1,15 @@
 import React from 'react';
-import { Form, Container, Button, Jumbotron } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
-export default () => (
-    <Container>
-        <Jumbotron>
-            <h2>Welcome to the IP Address Management tool</h2>
-        </Jumbotron>
-        <Form>
+export default ({ history, setLoggedIn }) => {
+    const handleSubmit = event => {
+        event.preventDefault();
+        setLoggedIn(true);
+        history.push('/');
+    };
+
+    return (
+        <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicLogin">
                 <Form.Label>Login</Form.Label>
                 <Form.Control size="lg" type="text" placeholder="User login" />
@@ -19,5 +22,5 @@ export default () => (
                 <Button type="submit">Sign in</Button>
             </Form.Group>
         </Form>
-    </Container>
-);
+    );
+}
