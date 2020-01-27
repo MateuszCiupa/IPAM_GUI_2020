@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { signOut } from 'redux/modules/auth';
+import { NavLink, NavDropdownLink } from './index';
+import styled from 'styled-components';
 
 const StyledNavbar = styled(Navbar)`
     background-color: #20232a;
+
+    
 `;
 
 const NavBar = ({ signOut, loading }) => (
@@ -15,40 +17,24 @@ const NavBar = ({ signOut, loading }) => (
         <Link className="navbar-brand" to="/">
             IPAM
         </Link>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
+
+            <NavDropdown title="Network" id="network=nav-dropdown">
+                <NavDropdownLink to="/subnets" title="Subnets" />
+                <NavDropdownLink to="/vlan" title="VLAN" />
+                <NavDropdownLink to="/nat" title="NAT" />
+            </NavDropdown>
+
             <Nav className="mr-auto">
-                <LinkContainer to="/subnets">
-                    <Nav.Link>
-                        Subnets
-                    </Nav.Link>
-                </LinkContainer>
-
-                <LinkContainer to="/racks">
-                    <Nav.Link>
-                        Racks
-                    </Nav.Link>
-                </LinkContainer>
-
-                <LinkContainer to="/devices">
-                    <Nav.Link>
-                        Devices
-                    </Nav.Link>
-                </LinkContainer> 
-
-                <LinkContainer to="/nat">
-                    <Nav.Link>
-                        NAT
-                    </Nav.Link>
-                </LinkContainer>   
-
-                <LinkContainer to="/vlan">
-                    <Nav.Link>
-                        VLAN
-                    </Nav.Link>
-                </LinkContainer>            
+                <NavLink to="/racks" title="Racks" />
+                <NavLink to="/devices" title="Devices" />       
             </Nav>
+
             <Navbar.Text>Signed in as:</Navbar.Text>
+
             <NavDropdown title="Admin" id="basic-nav-dropdown">
                 <NavDropdown.Item>Import</NavDropdown.Item>
                 <NavDropdown.Item>Export</NavDropdown.Item>
@@ -60,7 +46,9 @@ const NavBar = ({ signOut, loading }) => (
                     Sign out
                 </NavDropdown.Item>
             </NavDropdown>
+
         </Navbar.Collapse>
+
     </StyledNavbar>
 );
 
