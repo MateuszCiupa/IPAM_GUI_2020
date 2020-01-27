@@ -5,10 +5,6 @@ import { NavBar, Layout } from './layouts/components';
 import { connect } from 'react-redux';
 import { AuthRoute, ProtectedRoute } from './util/route';
 
-const mapStateToProps = ({ auth: { loggedIn }}) => ({
-    loggedIn
-});
-
 const App = ({ loggedIn }) => (
     <Router>
         {loggedIn ? <NavBar /> : null}
@@ -21,5 +17,9 @@ const App = ({ loggedIn }) => (
         </Layout>
     </Router>
 );
+
+const mapStateToProps = ({ firebase: { auth } }) => ({
+    loggedIn: auth.uid
+});
 
 export default connect(mapStateToProps)(App);

@@ -4,17 +4,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { logout } from 'redux/modules/auth';
-
-const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout())
-});
+import { signOut } from 'redux/modules/auth';
 
 const StyledNavbar = styled(Navbar)`
     background-color: #20232a;
 `;
 
-const NavBar = ({ logout }) => (
+const NavBar = ({ signOut, loading }) => (
     <StyledNavbar variant="dark" expand="lg">
         <Link className="navbar-brand" to="/">
             IPAM
@@ -57,13 +53,26 @@ const NavBar = ({ logout }) => (
                 <NavDropdown.Item>Import</NavDropdown.Item>
                 <NavDropdown.Item>Export</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => logout()}>Sign out</NavDropdown.Item>
+                <NavDropdown.Item
+                    disabled={loading}
+                    onClick={signOut}
+                >
+                    Sign out
+                </NavDropdown.Item>
             </NavDropdown>
         </Navbar.Collapse>
     </StyledNavbar>
 );
 
+const mapStateToProps = ({ auth: { loading } }) => ({
+    loading
+});
+
+const mapDispatchToProps = dispatch => ({
+    signOut: () => dispatch(signOut())
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(NavBar);
