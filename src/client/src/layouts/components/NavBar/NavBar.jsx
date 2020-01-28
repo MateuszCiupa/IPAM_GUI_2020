@@ -8,8 +8,6 @@ import styled from 'styled-components';
 
 const StyledNavbar = styled(Navbar)`
     background-color: #20232a;
-
-    
 `;
 
 const NavBar = ({ signOut, loading }) => (
@@ -21,14 +19,12 @@ const NavBar = ({ signOut, loading }) => (
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
-
-            <NavDropdown title="Network" id="network=nav-dropdown">
-                <NavDropdownLink to="/subnets" title="Subnets" />
-                <NavDropdownLink to="/vlan" title="VLAN" />
-                <NavDropdownLink to="/nat" title="NAT" />
-            </NavDropdown>
-
             <Nav className="mr-auto">
+                <NavDropdown title="Network" id="network=nav-dropdown">
+                    <NavDropdownLink to="/subnets" title="Subnets" />
+                    <NavDropdownLink to="/vlan" title="VLAN" />
+                    <NavDropdownLink to="/nat" title="NAT" />
+                </NavDropdown>
                 <NavLink to="/racks" title="Racks" />
                 <NavLink to="/devices" title="Devices" />       
             </Nav>
@@ -46,7 +42,6 @@ const NavBar = ({ signOut, loading }) => (
                     Sign out
                 </NavDropdown.Item>
             </NavDropdown>
-
         </Navbar.Collapse>
 
     </StyledNavbar>

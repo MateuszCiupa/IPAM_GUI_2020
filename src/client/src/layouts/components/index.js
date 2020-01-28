@@ -1,6 +1,6 @@
 import NavBar from './NavBar';
 import Layout from './Layout';
-import NavLink from './NavLink';
-import NavDropdownLink from './NavDropdownLink';
+import TableWrapper from './TableWrapper';
+import CardWrapper from './CardWrapper';
 
-export { NavBar, Layout, NavLink, NavDropdownLink };
+export { NavBar, Layout, TableWrapper, CardWrapper };

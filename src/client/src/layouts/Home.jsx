@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { TableWrapper } from './components';
 
 export default () => (
     <div>
-        <Link to="/login">Won't redirect to login page</Link>
+        Yet another Home Page
     </div>
 );
