@@ -4,22 +4,19 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
-import StyledTableCard from './styled/DetailsTable';
+import DetailsTable from './styled/DetailsTable';
 import { Link } from 'react-router-dom';
+import { parseData } from './utils/TabelDetailsUtils'
 
-const capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-}
 
 const TableDetailsWrapper = (props) => {
     const { documentId } = props.match.params;
     const { firestoreData, collectionName } = props;
     const tableFields = collections[collectionName].tableFields;
-
+    const data = parseData(firestoreData, collectionName, documentId)
     console.log(firestoreData[collectionName][documentId])
     return (
-        <StyledTableCard
+        <DetailsTable
             size="sm"
             responsive
             striped
@@ -35,60 +32,34 @@ const TableDetailsWrapper = (props) => {
             </thead>
 
             <tbody>
-                {firestoreData[collectionName] ? Object.entries(firestoreData[collectionName][documentId]).map(
-                    ([title, value]) => (
-                        <tr key={title}>
-                            <td className="left">{capitalize(title)}</td>
-                            <td>{typeof (value) == "string" ? value : ''}</td>
-
-                        </tr>
-                    )
+                {data ? data.map(
+                    ([title, value, link]) => {
+                        if (!link) {
+                            return (
+                                <tr key={title}>
+                                    <td className="left">{title}</td>
+                                    <td>
+                                        <ul>
+                                            {
+                                                value.map((val) =>(
+                                                   <li>{val}</li> 
+                                                ))
+                                            }
+                                        </ul>
+                                    </td>
+                                </tr>
+                            )
+                        } else {
+                            return (
+                            <td></td>
+                            )
+                        }    
+                    }             
                 ) : null}
             </tbody>
-        </StyledTableCard>
+        </DetailsTable>
 
     );
-    // return (
-    //     <Card style={{ maxWidth: '550px', alignSelf: 'center' }}>
-    //         <Card.Body>
-    //             {/* <Card.Title>This is: {props.collectionName}</Card.Title> */}
-    //             <StyledTableCard
-    //                 size="sm"
-    //                 responsive
-    //                 striped
-    //                 headers={2}
-    //             >
-    //                 <thead>
-    //                     <tr>
-    //                         <th colSpan={2}>
-    //                             {collectionName}
-    //                         </th>
-
-    //                     </tr>
-    //                 </thead>
-
-    //                 <tbody>
-    //                 {firestoreData[collectionName] ? Object.entries(firestoreData[collectionName][documentId]).map(
-    //                 ([title, value]) => (
-    //                     <tr key={documentId}>
-    //                         <td className="left">{capitalize(title)}</td>
-    //                         <td>{typeof(value) == "string" ? value : ''}</td>                            
-
-    //                     </tr>
-    //                 )
-    //             ) : null}
-    //                 </tbody>
-    //             </StyledTableCard>
-    //             {/* <Card.Subtitle>Subtitle is awesome{documentId}</Card.Subtitle>
-    //             <Card.Text>
-    //                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    //                 Tenetur ipsa ex provident veniam dolore unde officia illo ad totam,
-    //                 dicta omnis delectus dolorum nostrum voluptatum illum porro esse laudantium quaerat.
-    //             </Card.Text> */}
-    //             <Button>Delete?</Button>
-    //         </Card.Body>
-    //     </Card>
-    // );
 };
 
 const mapStateToProps = ({ firestore }) => ({

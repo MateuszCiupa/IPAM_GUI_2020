@@ -29,7 +29,7 @@ const App = ({ loggedIn }) => (
                         key={colName+'card'}
                         exact
                         path={`/${colName}/:documentId`}
-                        component={TableDetailsWrapper}
+                        component={colName === "racks" ? TableWrapper : TableDetailsWrapper}
                         collectionName={colName}
                     />
                 ))}

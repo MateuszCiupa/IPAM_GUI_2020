@@ -2,6 +2,12 @@ import Table from 'react-bootstrap/Table';
 import styled from 'styled-components';
 
 export default styled(Table)`
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }  
+    
     th, td {
         text-align: left;
         padding: 10px;
@@ -28,6 +34,11 @@ export default styled(Table)`
     thead th {
         background-color: #20302a;
         color: white;
+        max-width: 600px;
+    }
+
+    tbody {
+        max-width: 600px;
     }
 
     tr {
