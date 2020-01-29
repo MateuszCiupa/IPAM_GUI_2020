@@ -76,32 +76,28 @@ export const parseData = (firestoreData, collectionName, documentId) => {
 }
 
 export const parseDataForRacks = (firestoreData, collectionName, documentId) => {
-    // const data = firestoreData[collectionName][documentId];
-    // console.log(data)
-    // const parsedData = {};
-    // const devices = []
-    // if (!data || !data.size || !data.devices) {
-    //     return {}
-    // }
-    // parsedData['size'] = data.size;
-
-    // for (const devRef of data.devices) {
-    //     if (firestoreData[devRef.parent.path]) {
-    //         if (firestoreData[devRef.parent.path][devRef.id]) {
-    //             const link = <Link
-    //                 to={`/${val.path}`}
-    //             >
-    //                 {firestoreData
-    //                 [val.parent.path]
-    //                 [val.id]
-    //                 [collections[val.parent.path].linkField]
-    //                 }
-    //             </Link>
-    //             list.push(link);
-    //         }
-    //     }
-    // }
-
-
-    // return parsedData;
+    const data = firestoreData[collectionName][documentId];
+    console.log(data)
+    let parsedData = {};
+    const devices = {}
+    if (!data || !data.size || !data.devices) {
+        return {}
+    }
+    parsedData['size'] = data.size;
+    parsedData['name'] = data.about;
+    for (const devRef of data.devices) {
+        let newDevice = {}
+        if (firestoreData[devRef.parent.path]) {
+            if (firestoreData[devRef.parent.path][devRef.id]) {                
+                const tempDevice = firestoreData[devRef.parent.path][devRef.id]
+                newDevice = {
+                    "name": tempDevice.about,
+                    "size": tempDevice.size
+                }
+                devices[tempDevice.position] = newDevice;
+            }
+        }
+    }
+    parsedData['devices'] = devices;
+    return parsedData;
 }

@@ -4,6 +4,8 @@
     width: 400px;
     flex-direction: row;
     display: flex;
+    box-sizing: border-box;
+
 }
 
 
@@ -12,30 +14,36 @@
     border-bottom: 1px ridge black;
     box-sizing: border-box;
     height: 25px;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    font-weight: bold;
 }
 
 .innerRack {
     width: 100%;
     vertical-align: text-top;
     box-sizing: border-box;
+    border-collapse: collapse;
 }
 
 .empty{
     height: 25px;
-    border-top: 1px ridge blue;
-    border-bottom: 1px ridge blue;
 }
 
-.left {
+.leftSide {
     float: left;
     width: 40px;
     margin: auto;
+    background-color: lightgray;
 }
 
-.right {
+.rightSide {
     float: right;
     width: 40px;
     margin: auto;
+    background-color: lightgray;
 }
 
 
@@ -47,4 +55,7 @@
     border: 1px ridge black;
     border-top: 0;
     box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+
 }

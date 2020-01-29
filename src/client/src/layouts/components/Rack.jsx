@@ -1,12 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { collections } from 'util/firebase';
-import DetailsTable from './styled/DetailsTable';
-import { Link } from 'react-router-dom';
-import { parseData } from './utils/TabelDetailsUtils'
+
 import './css/rack.css'
 
 const devices = [
@@ -15,34 +8,59 @@ const devices = [
 ]
 
 const Rack = (props) => {
+    const { rackInfo } = props;
     const left = [];
     const right = [];
     const size = 40;
-    const tab = [<div className="device" style={{height: 50, borderTop: 0 }}>, v</div>, <div className="device">, v</div>]
-    for (let i = 0; i < size; ++i) {
+    const tab = []
+    for (let i = 1; i <= rackInfo.size; ++i) {
         left.push(
-                <div className="side">
-                    o{i}
-                </div>
+            <div className="side">
+                {i}
+            </div>
         );
         right.push(
-                <div className="side">
-                    o{i}
-                </div>
+            <div className="side">
+                {i}
+            </div>
         )
     }
+
+    for (let i = 1; i <= rackInfo.size; ) {      
+        if (rackInfo.devices[i]) {
+            tab.push(
+                <div className="device" style={{ height: 25 * rackInfo.devices[i].size}}>
+                    { rackInfo.devices[i].name }
+                </div>
+            )
+            i += rackInfo.devices[i].size;
+        } else {
+            tab.push(<div className="empty"></div>);
+            ++i;
+        }
+     
+    }
+
+    // for (const device of rackInfo.devices) {
+    //     const containTopBorder = !(device.position === 0);
+    //     tab.push(
+    //         <div className="device" style={{ height: 25 * device.size}}>
+    //             { device.name }
+    //         </div>
+    //     )
+    // }
+
     return (
 
         <div className="rack">
-            <div className="left">
+            <div className="leftSide">
                 {left}
             </div>
             <div className="innerRack">
-                <div className="empty" style={{ flex: 1 }}></div>
                 {tab}
             </div>
-            
-            <div className="right">
+
+            <div className="rightSide">
                 {right}
             </div>
         </div>
@@ -50,15 +68,4 @@ const Rack = (props) => {
     )
 };
 
-const mapStateToProps = ({ firestore }) => ({
-    firestoreData: firestore.data
-});
-
 export default Rack
-// export default compose(
-//     firestoreConnect(({ collectionName }) => [
-//         collectionName,
-//         ...collections[collectionName].tableRefs
-//     ]),
-//     connect(mapStateToProps)
-// )(Rack);

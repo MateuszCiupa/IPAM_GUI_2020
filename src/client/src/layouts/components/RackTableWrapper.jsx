@@ -20,7 +20,7 @@ const RackTableWrapper = (props) => {
                 match={props.match}
                 showRacks={true}
             />
-            <Rack />
+            <Rack rackInfo={rackInfo} />
         </div>
     )
 }
