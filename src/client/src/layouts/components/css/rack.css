@@ -1,0 +1,50 @@
+.rack {
+    color: black;
+    border: 2px ridge black;
+    width: 400px;
+    flex-direction: row;
+    display: flex;
+}
+
+
+.device {
+    border-top: 1px ridge black;
+    border-bottom: 1px ridge black;
+    box-sizing: border-box;
+    height: 25px;
+}
+
+.innerRack {
+    width: 100%;
+    vertical-align: text-top;
+    box-sizing: border-box;
+}
+
+.empty{
+    height: 25px;
+    border-top: 1px ridge blue;
+    border-bottom: 1px ridge blue;
+}
+
+.left {
+    float: left;
+    width: 40px;
+    margin: auto;
+}
+
+.right {
+    float: right;
+    width: 40px;
+    margin: auto;
+}
+
+
+
+
+.side {
+    /* margin: auto; */
+    height: 25px;
+    border: 1px ridge black;
+    border-top: 0;
+    box-sizing: border-box;
+}

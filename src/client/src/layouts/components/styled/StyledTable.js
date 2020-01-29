@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
 import styled from 'styled-components';
 
-export default styled(Table)`
+export default styled(Table)`  
     th, td {
         text-align: center;
         padding: 10px;

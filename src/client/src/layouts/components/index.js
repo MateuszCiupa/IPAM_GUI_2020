@@ -2,7 +2,7 @@ import NavBar from './NavBar';
 import Layout from './Layout';
 import TableWrapper from './TableWrapper';
 import TableDetailsWrapper from './TableDetailsWrapper';
-import CardWrapper from './CardWrapper';
+import RackTableWrapper from './RackTableWrapper';
 import AddModalWrapper from './AddModalWrapper';
 
-export { NavBar, Layout, TableWrapper, CardWrapper, TableDetailsWrapper, AddModalWrapper };
+export { NavBar, Layout, TableWrapper, TableDetailsWrapper, AddModalWrapper, RackTableWrapper };

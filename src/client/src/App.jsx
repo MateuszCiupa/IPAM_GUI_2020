@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Home, Login, Racks } from './layouts';
-import { NavBar, Layout, TableWrapper, CardWrapper, TableDetailsWrapper } from './layouts/components';
+import { NavBar, Layout, TableWrapper, RackTableWrapper, TableDetailsWrapper } from './layouts/components';
 import { connect } from 'react-redux';
 import { AuthRoute, ProtectedRoute } from './util/route';
 import { collections } from './util/firebase';
@@ -29,7 +29,7 @@ const App = ({ loggedIn }) => (
                         key={colName+'card'}
                         exact
                         path={`/${colName}/:documentId`}
-                        component={colName === "racks" ? TableWrapper : TableDetailsWrapper}
+                        component={colName === "racks" ? RackTableWrapper : TableDetailsWrapper}
                         collectionName={colName}
                     />
                 ))}

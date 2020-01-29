@@ -33,7 +33,6 @@ export const parseData = (firestoreData, collectionName, documentId) => {
                         } else if (typeof val == 'number' || typeof val == 'boolean') {
                             list.push(val.toString());
                         } else if (typeof val === 'object') {
-                            console.log("Tuuu", val)
                             if (firestoreData[val.parent.path]) {
                                 if (firestoreData[val.parent.path][val.id]) {
                                     const link = <Link
@@ -45,7 +44,6 @@ export const parseData = (firestoreData, collectionName, documentId) => {
                                         [collections[val.parent.path].linkField]
                                         }
                                     </Link>
-                                    console.log(link)
                                     list.push(link);
                                 }
                             }
@@ -75,4 +73,35 @@ export const parseData = (firestoreData, collectionName, documentId) => {
         }
     )
     return parsedData;
+}
+
+export const parseDataForRacks = (firestoreData, collectionName, documentId) => {
+    // const data = firestoreData[collectionName][documentId];
+    // console.log(data)
+    // const parsedData = {};
+    // const devices = []
+    // if (!data || !data.size || !data.devices) {
+    //     return {}
+    // }
+    // parsedData['size'] = data.size;
+
+    // for (const devRef of data.devices) {
+    //     if (firestoreData[devRef.parent.path]) {
+    //         if (firestoreData[devRef.parent.path][devRef.id]) {
+    //             const link = <Link
+    //                 to={`/${val.path}`}
+    //             >
+    //                 {firestoreData
+    //                 [val.parent.path]
+    //                 [val.id]
+    //                 [collections[val.parent.path].linkField]
+    //                 }
+    //             </Link>
+    //             list.push(link);
+    //         }
+    //     }
+    // }
+
+
+    // return parsedData;
 }

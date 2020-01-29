@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
 import DetailsTable from './styled/DetailsTable';
-import { Link } from 'react-router-dom';
 import { parseData } from './utils/TabelDetailsUtils'
 
 
@@ -16,49 +15,52 @@ const TableDetailsWrapper = (props) => {
     const data = parseData(firestoreData, collectionName, documentId)
     console.log(firestoreData[collectionName][documentId])
     return (
-        <DetailsTable
-            size="sm"
-            responsive
-            striped
-            headers={2}
-        >
-            <thead>
-                <tr>
-                    <th colSpan={2}>
-                        {collectionName.toUpperCase()}
-                    </th>
+        <div>
+            <center>
+            <DetailsTable
+                size="sm"
+                responsive
+                striped
+                headers={2}
+            >
+                <thead>
+                    <tr>
+                        <th colSpan={2}>
+                            {collectionName.toUpperCase()}
+                        </th>
 
-                </tr>
-            </thead>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {data ? data.map(
-                    ([title, value, link]) => {
-                        if (!link) {
-                            return (
-                                <tr key={title}>
-                                    <td className="left">{title}</td>
-                                    <td>
-                                        <ul>
-                                            {
-                                                value.map((val) =>(
-                                                   <li>{val}</li> 
-                                                ))
-                                            }
-                                        </ul>
-                                    </td>
-                                </tr>
-                            )
-                        } else {
-                            return (
-                            <td></td>
-                            )
-                        }    
-                    }             
-                ) : null}
-            </tbody>
-        </DetailsTable>
-
+                <tbody>
+                    {data ? data.map(
+                        ([title, value, link]) => {
+                            if (!link) {
+                                return (
+                                    <tr key={title}>
+                                        <td className="left">{title}</td>
+                                        <td>
+                                            <ul>
+                                                {
+                                                    value.map((val) => (
+                                                        <li>{val}</li>
+                                                    ))
+                                                }
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                )
+                            } else {
+                                return (
+                                    <td></td>
+                                )
+                            }
+                        }
+                    ) : null}
+                </tbody>
+            </DetailsTable>
+            </center>
+        </div>
     );
 };
 

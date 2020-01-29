@@ -2,6 +2,10 @@ import Table from 'react-bootstrap/Table';
 import styled from 'styled-components';
 
 export default styled(Table)`
+    .table {
+        width: 50px;
+    }
+
     ul {
         list-style-type: none;
         margin: 0;
@@ -14,6 +18,8 @@ export default styled(Table)`
         padding-right: 10px;
         padding-left: 20px;
         flex: 1;
+
+        width: 54185px;
     }
 
     th {
