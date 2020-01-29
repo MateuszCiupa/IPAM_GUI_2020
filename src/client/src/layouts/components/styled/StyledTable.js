@@ -23,7 +23,8 @@ export default styled(Table)`
     }
 
     tbody tr:hover {
-        background-color: #dbd9d9;
+        opacity: ${({ linkHover }) => linkHover ? '1' : '0.65'};
         cursor: pointer;
+
     }
 `;

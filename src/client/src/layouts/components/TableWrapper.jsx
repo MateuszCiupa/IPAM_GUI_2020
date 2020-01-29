@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
 
-const TableWrapper = ({ firestoreData, collectionName }) => {
+const TableWrapper = ({ firestoreData, collectionName, history }) => {
     const tableFields = collections[collectionName].tableFields;
     const [edit, setEdit] = useState(false);
     const [selected, setSelected] = useState([]);
+    const [linkHover, setLinkHover] = useState(false);
 
     return (
         <StyledTable 
@@ -18,6 +19,7 @@ const TableWrapper = ({ firestoreData, collectionName }) => {
             responsive 
             striped 
             headers={tableFields.length}
+            linkHover={linkHover}
         >
             <thead>
                 <tr>
@@ -71,7 +73,10 @@ const TableWrapper = ({ firestoreData, collectionName }) => {
             <tbody>
                 {firestoreData[collectionName] ? Object.entries(firestoreData[collectionName]).map(
                     ([documentId, documentObject]) => (
-                        <tr key={documentId}>
+                        <tr 
+                            key={documentId}
+                            onClick={() => !linkHover && history.push(`/${collectionName}/${documentId}`)}
+                        >
 
                             <td></td>
 
@@ -84,7 +89,11 @@ const TableWrapper = ({ firestoreData, collectionName }) => {
                                             } else if (documentObject[field].parent) {
                                                 if (firestoreData[documentObject[field].parent.path]) {
                                                     return (
-                                                        <Link to={`/${documentObject[field].path}`}>
+                                                        <Link 
+                                                            to={`/${documentObject[field].path}`}
+                                                            onMouseEnter={() => setLinkHover(true)}
+                                                            onMouseLeave={() => setLinkHover(false)}
+                                                        >
                                                             {firestoreData
                                                                 [documentObject[field].parent.path]
                                                                 [documentObject[field].id]
