@@ -25,7 +25,9 @@ const Rack = (props) => {
         if (rackInfo.devices[i]) {
             tab.push(
                 <div className="device" style={{ height: 25 * rackInfo.devices[i].size}}>
-                    { rackInfo.devices[i].name }
+                    <span className="devicename">{ rackInfo.devices[i].name } </span>
+                    { rackInfo.devices[i].about }
+                    
                 </div>
             )
             i += rackInfo.devices[i].size;

@@ -91,7 +91,8 @@ export const parseDataForRacks = (firestoreData, collectionName, documentId) => 
             if (firestoreData[devRef.parent.path][devRef.id]) {                
                 const tempDevice = firestoreData[devRef.parent.path][devRef.id]
                 newDevice = {
-                    "name": tempDevice.about,
+                    "name": tempDevice.hostname,
+                    "about": tempDevice.about,
                     "size": tempDevice.size
                 }
                 devices[tempDevice.position] = newDevice;

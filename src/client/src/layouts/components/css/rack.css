@@ -19,7 +19,6 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
-    font-weight: bold;
 }
 
 .innerRack {
@@ -32,6 +31,12 @@
 .empty{
     height: 25px;
 }
+
+.devicename{
+    font-weight: bold;
+    margin: 0;
+}
+
 
 .leftSide {
     float: left;
