@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
 import TableDetailsWrapper from './TableDetailsWrapper';
-import Rack from './Rack';
-import { parseDataForRacks } from './utils/TabelDetailsUtils'
-import { Row, Col } from 'react-bootstrap';
+import  Rack from './Rack';
+import { parseDataForRacks } from './utils/TabelDetailsUtils';
+import { Col, Row } from 'react-bootstrap';
 
 
 const RackTableWrapper = (props) => {
