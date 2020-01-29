@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Home, Login, Racks } from './layouts';
-import { NavBar, Layout, TableWrapper, CardWrapper } from './layouts/components';
+import { NavBar, Layout, TableWrapper, CardWrapper, TableDetailsWrapper } from './layouts/components';
 import { connect } from 'react-redux';
 import { AuthRoute, ProtectedRoute } from './util/route';
 import { collections } from './util/firebase';
+import 'App.css'
 
 const App = ({ loggedIn }) => (
     <Router>
@@ -33,7 +34,7 @@ const App = ({ loggedIn }) => (
                         key={colName+'card'}
                         exact
                         path={`/${colName}/:documentId`}
-                        component={CardWrapper}
+                        component={TableDetailsWrapper}
                         collectionName={colName}
                     />
                 ))}

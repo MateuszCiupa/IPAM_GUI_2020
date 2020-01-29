@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
-import DetailsTable from './styled/DetailsTable';
+import StyledTableCard from './styled/DetailsTable';
 import { Link } from 'react-router-dom';
 
 const capitalize = (s) => {
@@ -12,14 +12,14 @@ const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-const CardWrapper = (props) => {
+const TableDetailsWrapper = (props) => {
     const { documentId } = props.match.params;
     const { firestoreData, collectionName } = props;
     const tableFields = collections[collectionName].tableFields;
 
     console.log(firestoreData[collectionName][documentId])
     return (
-        <DetailsTable
+        <StyledTableCard
             size="sm"
             responsive
             striped
@@ -45,7 +45,7 @@ const CardWrapper = (props) => {
                     )
                 ) : null}
             </tbody>
-        </DetailsTable>
+        </StyledTableCard>
 
     );
     // return (
@@ -101,4 +101,4 @@ export default compose(
         ...collections[collectionName].tableRefs
     ]),
     connect(mapStateToProps)
-)(CardWrapper);
+)(TableDetailsWrapper);
