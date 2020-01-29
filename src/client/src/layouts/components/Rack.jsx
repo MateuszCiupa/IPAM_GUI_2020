@@ -1,11 +1,6 @@
 import React from 'react';
-
 import './css/rack.css'
 
-const devices = [
-    { name: "ble", size: 4, position: 12 },
-    { name: "ble", size: 2, position: 12 }
-]
 
 const Rack = (props) => {
     const { rackInfo } = props;
@@ -37,18 +32,9 @@ const Rack = (props) => {
         } else {
             tab.push(<div className="empty"></div>);
             ++i;
-        }
-     
+        }     
     }
 
-    // for (const device of rackInfo.devices) {
-    //     const containTopBorder = !(device.position === 0);
-    //     tab.push(
-    //         <div className="device" style={{ height: 25 * device.size}}>
-    //             { device.name }
-    //         </div>
-    //     )
-    // }
 
     return (
 

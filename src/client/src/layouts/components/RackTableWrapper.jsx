@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
 import TableDetailsWrapper from './TableDetailsWrapper';
-import  Rack from './Rack';
+import Rack from './Rack';
 import { parseDataForRacks } from './utils/TabelDetailsUtils'
+import { Row, Col } from 'react-bootstrap';
 
 
 const RackTableWrapper = (props) => {
@@ -13,15 +14,19 @@ const RackTableWrapper = (props) => {
     const { firestoreData, collectionName } = props;
     const rackInfo = parseDataForRacks(firestoreData, collectionName, documentId)
     return (
-        <div>
-            <TableDetailsWrapper
-                firestoreData={props.firestoreData}
-                collectionName={props.collectionName}
-                match={props.match}
-                showRacks={true}
-            />
-            <Rack rackInfo={rackInfo} />
-        </div>
+        <Row>
+            <Col>
+                <TableDetailsWrapper
+                    firestoreData={props.firestoreData}
+                    collectionName={props.collectionName}
+                    match={props.match}
+                    showRacks={true}
+                />
+            </Col>
+            <Col>
+                <Rack rackInfo={rackInfo} />
+            </Col>
+        </Row>
     )
 }
 

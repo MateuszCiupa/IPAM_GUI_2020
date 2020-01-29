@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TableWrapper } from './components';
+import { Redirect } from 'react-router-dom';
 
 export default () => (
-    <div>
-        Yet another Home Page
-    </div>
+    <Redirect to="/subnets" />
 );
