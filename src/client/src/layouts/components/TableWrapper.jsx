@@ -6,12 +6,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { collections } from 'util/firebase';
+import AddModalWrapper from './AddModalWrapper';
 
 const TableWrapper = ({ firestoreData, collectionName, history }) => {
     const tableFields = collections[collectionName].tableFields;
     const [edit, setEdit] = useState(false);
     const [selected, setSelected] = useState([]);
     const [linkHover, setLinkHover] = useState(false);
+    const [addShow, setAddShow] = useState(false);
 
     return (
         <StyledTable 
@@ -21,6 +23,12 @@ const TableWrapper = ({ firestoreData, collectionName, history }) => {
             headers={tableFields.length}
             linkHover={linkHover}
         >
+            <AddModalWrapper 
+                show={addShow}
+                setShow={setAddShow}
+                collectionName={collectionName}
+            />
+
             <thead>
                 <tr>
                     <th>
@@ -38,6 +46,7 @@ const TableWrapper = ({ firestoreData, collectionName, history }) => {
                         ) : (
                             <Button 
                                 size="sm"
+                                onClick={() => setAddShow(true)}
                             >
                                 Add
                             </Button>
@@ -84,23 +93,29 @@ const TableWrapper = ({ firestoreData, collectionName, history }) => {
                                 <td key={documentId+field}>
                                     {
                                         (() => {
-                                            if (Array.isArray(documentObject[field])) {
+                                            if (!documentObject[field]) {
+                                                return '';
+                                            } else if (Array.isArray(documentObject[field])) {
                                                 return documentObject[field].length;
-                                            } else if (documentObject[field].parent) {
+                                            } else if (typeof documentObject[field] === 'object') {
                                                 if (firestoreData[documentObject[field].parent.path]) {
-                                                    return (
-                                                        <Link 
-                                                            to={`/${documentObject[field].path}`}
-                                                            onMouseEnter={() => setLinkHover(true)}
-                                                            onMouseLeave={() => setLinkHover(false)}
-                                                        >
-                                                            {firestoreData
-                                                                [documentObject[field].parent.path]
-                                                                [documentObject[field].id]
-                                                                [collections[documentObject[field].parent.path].linkField]
-                                                            }
-                                                        </Link>
-                                                    );
+                                                    if (firestoreData[documentObject[field].parent.path][documentObject[field].id]) {
+                                                        return (
+                                                            <Link 
+                                                                to={`/${documentObject[field].path}`}
+                                                                onMouseEnter={() => setLinkHover(true)}
+                                                                onMouseLeave={() => setLinkHover(false)}
+                                                            >
+                                                                {firestoreData
+                                                                    [documentObject[field].parent.path]
+                                                                    [documentObject[field].id]
+                                                                    [collections[documentObject[field].parent.path].linkField]
+                                                                }
+                                                            </Link>
+                                                        );
+                                                    } else {
+                                                        return '';
+                                                    }
                                                 } else {
                                                     return '';
                                                 }

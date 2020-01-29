@@ -22,8 +22,8 @@ const NavBar = ({ signOut, loading }) => (
             <Nav className="mr-auto">
                 <NavDropdown title="Network" id="network=nav-dropdown">
                     <NavDropdownLink to="/subnets" title="Subnets" />
-                    <NavDropdownLink to="/vlan" title="VLAN" />
-                    <NavDropdownLink to="/nat" title="NAT" />
+                    <NavDropdownLink to="/vlans" title="VLAN" />
+                    <NavDropdownLink to="/nats" title="NAT" />
                 </NavDropdown>
                 <NavLink to="/racks" title="Racks" />
                 <NavLink to="/devices" title="Devices" />       

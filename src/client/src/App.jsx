@@ -14,11 +14,6 @@ const App = ({ loggedIn }) => (
             <Switch>
                 <AuthRoute path="/login" component={Login} />
 
-                <ProtectedRoute 
-                    path="/racks" 
-                    component={Racks}
-                />
-
                 {Object.keys(collections).map(colName => collections[colName].tableFields ? (
                     <ProtectedRoute 
                         key={colName+'table'}

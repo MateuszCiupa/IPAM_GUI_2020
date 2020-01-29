@@ -19,33 +19,47 @@ export default firebase;
 
 export const collections = {
     subnets: {
-        tableFields: ['ip', 'mask', 'about', 'vlan', 'loc'],
-        tableRefs: ['vlan', 'locations'],
-        refs: ['devices', 'locations', 'nameservers', 'vlan'],
+        tableFields: ['ip', 'mask', 'about', 'vlan', 'location'],
+        tableRefs: ['vlans', 'locations'],
+        addFields: ['ip', 'mask', 'about', 'dhcp'],
+        refs: ['devices', 'locations', 'vlans', 'nameservers'],
         linkField: 'ip'
     },
-    vlan: {
+    vlans: {
         tableFields: ['id', 'about', 'subnets'],
         tableRefs: ['subnets'],
+        addFields: ['id', 'name', 'about'],
         refs: ['subnets'],
         linkField: 'name'
     },
-    nat: {
+    nats: {
         tableFields: ['name', 'device', 'subnet'],
         tableRefs: ['devices', 'subnets'],
+        addFields: ['ip', 'name'],
         refs: ['devices', 'subnets'],
         linkField: 'name'
     },
     devices: {
         tableFields: ['hostname', 'owner', 'ip', 'subnet'],
         tableRefs: ['subnets'],
-        refs: ['racks', 'nat', 'subnets'],
+        addFields: ['hostname', 'owner', 'about', 'ip', 'mac', 'position', 'size'],
+        refs: ['racks', 'nats', 'subnets'],
         linkField: 'hostname',
     },
     locations: {
+        tableRefs: [],
+        refs: [],
         linkField: 'name',
     },
     racks: {
+        tableFields: ['name', 'location', 'size', 'devices'],
+        tableRefs: ['locations', 'devices'],
+        addFields: ['name', 'about', 'size'],
+        refs: ['locations', 'devices'],
         linkField: 'name',
+    },
+    nameservers: {
+        tableRefs: [],
+        refs: []
     }
 };
