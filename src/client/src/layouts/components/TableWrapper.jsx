@@ -54,7 +54,7 @@ const TableWrapper = ({ firestoreData, collectionName, history }) => {
                     </th>
 
                     {collections[collectionName].tableFields.map(header => (
-                        <th key={header}>{header}</th>
+                        <th key={header}>{header[0].toUpperCase() + header.slice(1)}</th>
                     ))}
 
                     <th>
