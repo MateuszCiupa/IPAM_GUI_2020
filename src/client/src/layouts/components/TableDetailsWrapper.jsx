@@ -37,7 +37,7 @@ const TableDetailsWrapper = (props) => {
             <tbody>
                 {firestoreData[collectionName] ? Object.entries(firestoreData[collectionName][documentId]).map(
                     ([title, value]) => (
-                        <tr key={documentId}>
+                        <tr key={title}>
                             <td className="left">{capitalize(title)}</td>
                             <td>{typeof (value) == "string" ? value : ''}</td>
 
