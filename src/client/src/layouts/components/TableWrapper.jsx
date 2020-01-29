@@ -138,6 +138,8 @@ const TableWrapper = ({ firestoreData, collectionName, history }) => {
                                                 prev.concat(documentId)
                                             )
                                         }
+                                        onMouseEnter={() => setLinkHover(true)}
+                                        onMouseLeave={() => setLinkHover(false)}
                                     />
                                 ) : null}
                             </td>
