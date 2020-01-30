@@ -6,7 +6,6 @@ const Rack = (props) => {
     const { rackInfo } = props;
     const left = [];
     const right = [];
-    const size = 40;
     const tab = []
     for (let i = 1; i <= rackInfo.size; ++i) {
         left.push(
@@ -36,7 +35,6 @@ const Rack = (props) => {
             ++i;
         }     
     }
-
 
     return (
 

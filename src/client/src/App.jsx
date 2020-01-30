@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Home, Login, Racks } from './layouts';
+import { Home, Login } from './layouts';
 import { NavBar, Layout, TableWrapper, RackTableWrapper, TableDetailsWrapper } from './layouts/components';
 import { connect } from 'react-redux';
 import { AuthRoute, ProtectedRoute } from './util/route';
 import { collections } from './util/firebase';
-import 'App.css'
+import 'App.css';
 
 const App = ({ loggedIn }) => (
     <Router>

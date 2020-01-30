@@ -77,7 +77,6 @@ export const parseData = (firestoreData, collectionName, documentId) => {
 
 export const parseDataForRacks = (firestoreData, collectionName, documentId) => {
     const data = firestoreData[collectionName][documentId];
-    console.log(data)
     let parsedData = {};
     const devices = {}
     if (!data || !data.size || !data.devices) {
